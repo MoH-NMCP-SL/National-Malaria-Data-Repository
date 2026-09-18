@@ -15,6 +15,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Roboto', 'Segoe UI', Arial, sans-serif; background: #f0f5f9; min-height: 100vh; }
         
+        /* The sign in page stands on its own: the app header and footer belong to
+           the builder and are hidden until somebody is signed in. */
+        body.auth-mode .header, body.auth-mode .footer { display: none !important; }
+
         /* Auth Styles */
         .auth-container { min-height: 100vh; display: flex; justify-content: center; align-items: center; background: linear-gradient(135deg, #2c6793 0%, #1f4a6a 100%); padding: 20px; }
         .auth-box { background: white; border-radius: 12px; width: 100%; max-width: 420px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
@@ -405,7 +409,7 @@
         }
     </style>
 </head>
-<body>
+<body class="auth-mode">
     <!-- Auth Container -->
     <div class="auth-container" id="authContainer">
         <div class="auth-box">
@@ -3213,6 +3217,7 @@
         }
 
         function showBuilder() {
+            document.body.classList.remove('auth-mode');
             document.getElementById('authContainer').style.display = 'none';
             document.getElementById('mainContainer').classList.add('show');
             document.getElementById('headerUser').innerHTML = '<span data-icon="user" data-size="14"></span> ' + (state.user?.name || 'User');
@@ -3221,6 +3226,7 @@
         }
 
         function logout() {
+            document.body.classList.add('auth-mode');
             state.user = null;
             safeStorage.removeItem('icfCollectUser');
             document.getElementById('mainContainer').classList.remove('show');
@@ -5756,6 +5762,7 @@
 
         // ==================== FORM VIEWER ====================
         async function renderSharedForm(data) {
+            document.body.classList.remove('auth-mode');
             document.getElementById('authContainer').style.display = 'none';
             document.getElementById('mainContainer').classList.remove('show');
             document.querySelector('.header').style.display = 'none';
