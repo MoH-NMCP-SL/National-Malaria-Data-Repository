@@ -3347,7 +3347,7 @@ var progLabel = function(c){ return PROG_SHORT[c] || c; };
    and portal are keyed on. */
 var DIRECTORATES = [
   {code:'DPC',   name:'Directorate of Disease Prevention and Control',
-   progs:['NMDR','HIV','TB','NTD']},
+   progs:['NMDR','HIV','TB','NTD', 'NHCP']},
   {code:'RCH-N', name:'Directorate of Reproductive, Child Health and Nutrition',
    progs:['EPI','CHP','FP','NUTRITION']},
   {code:'DPHC',  name:'Directorate of Primary Health Care',
@@ -3362,6 +3362,7 @@ var PROG_NAMES = {
     HIV:'National HIV and AIDS Programme',
     TB:'National Tuberculosis Programme',
     NTD:'Neglected Tropical Diseases Programme',
+    NHCP:'National Hepatitis Control Programme',
     EPI:'Expanded Programme on Immunisation',
     CHP:'Child Health Programme',
     FP:'Family Planning',
@@ -3379,6 +3380,8 @@ var PROG_NAMES = {
    portal is recognisable rather than generic filler. */
 var PROG_MODULES = {
     HIV:[['1.0','Testing and Positivity','Tests done, positives and yield by entry point and district.'],
+         ['2.0','Treatment and Retention','ART enrolment, retention and viral suppression.']],
+    NHCP:[['1.0','Testing and Positivity','Tests done, positives and yield by entry point and district.'],
          ['2.0','Treatment and Retention','ART enrolment, retention and viral suppression.']],
     TB:[['1.0','Case Notification','Notified cases by type, age, sex and district.'],
          ['2.0','Treatment Outcomes','Cure, completion, loss to follow up and drug resistance.']],
