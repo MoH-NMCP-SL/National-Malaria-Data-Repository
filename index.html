@@ -745,7 +745,7 @@
         <h1>Install NMDR</h1>
         <h2>Ministry of Health, Sierra Leone</h2>
         <button class="inst-btn" id="nmdrInstall" type="button">Install the app</button>
-        <button class="inst-btn later" id="instLater" type="button">Continue to the sign in</button>
+        <button class="inst-btn later" id="instLater" type="button">Continue to the home page</button>
     </div>
 </div>
 
@@ -5115,11 +5115,9 @@ window.addEventListener('beforeinstallprompt', function(){ canPrompt = true; });
     if (!el) return;
 
     function hide(){ el.classList.remove('show'); }
-    function show(){
-        el.classList.add('show');
-        var sp = document.getElementById('splash');
-        if (sp){ sp.style.display = 'none'; splashDone = true; }
-    }
+    /* The install page sits above the home page rather than replacing it, so closing
+       it leaves the home page showing and Get started carries on from there. */
+    function show(){ el.classList.add('show'); }
     function remember(){ try { localStorage.setItem(INSTALLED_KEY, '1'); } catch (e) {} }
     function remembered(){ try { return localStorage.getItem(INSTALLED_KEY) === '1'; } catch (e) { return false; } }
     function noPromptHere(){ try { return sessionStorage.getItem(NOPROMPT_KEY) === '1'; } catch (e) { return false; } }
